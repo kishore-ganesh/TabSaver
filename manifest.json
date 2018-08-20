@@ -1,0 +1,23 @@
+{
+
+  "manifest_version": 2,
+  "name": "PrivWin",
+  "version": "1.0",
+
+  "description": "Saves private session ",
+
+  
+ 
+
+  "browser_action":{
+    "default_icon": "icons/privwin.png",
+    "default_title": "PrivWin",
+    "default_popup": "popup/privwin.html"
+  },
+  
+  "permissions":[
+    "tabs",
+    "storage"
+  ]
+  
+}
