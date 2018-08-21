@@ -5,20 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PrivWin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="privwin.css" />
-   
+    <script src="jquery-3.3.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
     
     <div class="box">
-            <button id="save"> Save to Memory </button>
-            <button id="load"> Load from Memory </button>
-            <button id="open"> Open from Memory </button>
+            <button id="save" class="btn btn-outline-primary"><span>Save to Memory</span>  </button>
+            <button id="load" class="btn btn-outline-primary"><span> Load from Memory</span> </button>
+            <button id="loadselected" class="btn btn-outline-primary"><span>Load Selected</span></button>
+            <button id="open" class="btn btn-outline-primary"> <span>Open from Memory</span> </button>
+            <button id="clear" class="btn btn-outline-primary"><span>Clear memory</span></button>
         <ul id="urllist">
 
         </ul>
     </div>
-    <script src="jquery-3.3.1.js"></script>
+    
     <script src="tabs.js"></script>
 </body>
 </html>

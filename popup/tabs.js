@@ -9,11 +9,36 @@ $("#open").click(() => {
   openFromMemory();
 });
 
+$("#clear").click(()=>{
+  clearMemory();
+})
+
+$("#loadselected").click(()=>{
+
+  $(".check").each((i,box)=>{
+    //console.log(this);
+    console.log(box);
+    if($(box).prop('checked')){
+      console.log($(box).parent().find("span"));
+      
+      browser.tabs.create({
+        url: $(box).parent().find("span").html(),
+        active: false
+      })
+    }
+  })
+  
+
+
+})
+
 function saveToMemory() {
   browser.tabs.query({ currentWindow: true }).then(tabs => {
     urlsList = [];
     tabs.forEach(tab => {
-      urlsList.push(tab.url);
+      if (tab.url != "about:newtab"&&tab.url!="about:blank") {
+        urlsList.push(tab.url);
+      }
     });
 
     browser.storage.local.set({ urlsList }).then(err => {
@@ -28,18 +53,27 @@ function saveToMemory() {
 }
 
 function display(urlsList) {
-  list = document.getElementById("urllist");
+  //  list = document.getElementById("urllist");
+  list = $("#urllist");
+  list.html("");
   urlsList.forEach(listitem => {
-    item = document.createElement("li");
-    item.innerHTML = listitem;
-    list.appendChild(item);
+    list.append(
+      $("<li>", {
+        class: "urllistitem"
+      }).html("<span>"+listitem+"</span>").append(
+        $("<input>", {
+          type: "checkbox",
+          class: "check"
+        })
+      )
+    );
   });
 }
 
 function loadFromMemory() {
   return new Promise((resolve, reject) => {
     browser.storage.local.get("urlsList").then(urlsList => {
-      console.log(urlsList);
+      //console.log(urlsList);
       display(urlsList.urlsList);
       resolve(urlsList.urlsList);
     });
@@ -55,4 +89,9 @@ function openFromMemory() {
       });
     });
   });
+}
+
+function clearMemory() {
+  browser.storage.local.clear();
+
 }
